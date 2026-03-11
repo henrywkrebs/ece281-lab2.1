@@ -1,24 +1,3 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 03/11/2026 12:26:07 AM
--- Design Name: 
--- Module Name: sevenseg_decoder - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -42,10 +21,10 @@ o_seg_n <=  "1000000" when x"0",  -- 0
             "0000010" when x"6",  -- 6
             "1111000" when x"7",  -- 7
             "0000000" when x"8",  -- 8
-            "0010000" when x"9",  -- 9
+            "0011000" when x"9",  -- 9
             "0001000" when x"A",  -- A
             "0000011" when x"B",  -- B
-            "1000110" when x"C",  -- C
+            "0100111" when x"C",  -- C
             "0100001" when x"D",  -- D
             "0000110" when x"E",  -- E
             "0001110" when x"F",  -- F
