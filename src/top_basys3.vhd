@@ -54,48 +54,43 @@
 --|    s_<signal name>          = state name
 --|
 --+----------------------------------------------------------------------------
-library ieee;
-  use ieee.std_logic_1164.all;
-  use ieee.numeric_std.all;
-
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
 
 entity top_basys3 is
-	port(
-		-- 7-segment display segments (cathodes CG ... CA)
-		seg		:	out std_logic_vector(6 downto 0);  -- seg(6) = CG, seg(0) = CA
-
-		-- 7-segment display active-low enables (anodes)
-		an      :	out std_logic_vector(3 downto 0);
-
-		-- Switches
-		sw		:	in  std_logic_vector(3 downto 0);
-		
-		-- Buttons
-		btnC	:	in	std_logic
-
-	);
+    Port ( sw   : in  STD_LOGIC_VECTOR (3 downto 0);
+           btnC : in  STD_LOGIC;
+           seg  : out STD_LOGIC_VECTOR (6 downto 0);
+           an   : out STD_LOGIC_VECTOR (3 downto 0));
 end top_basys3;
 
-architecture top_basys3_arch of top_basys3 is 
-	
-  -- declare the component of your top-level design
+architecture top_basys3_arch of top_basys3 is
 
+    -- Component declaration
+    component sevenseg_decoder is
+        Port ( i_Hex   : in  STD_LOGIC_VECTOR (3 downto 0);
+               o_seg_n : out STD_LOGIC_VECTOR (6 downto 0));
+    end component;
 
-  -- create wire to connect button to 7SD enable (active-low)
+    -- Internal signal for display enable (active low)
+    signal w_7SD_EN_n : STD_LOGIC;
 
-  
 begin
-	-- PORT MAPS ----------------------------------------
 
-	--	Port map: wire your component up to the switches and seven-segment display cathodes
-	-----------------------------------------------------	
-	
-	
-	-- CONCURRENT STATEMENTS ----------------------------
-	
-	-- wire up active-low 7SD anode (active low) to button (active-high)
-	-- display 7SD 0 only when button pushed
-	-- other 7SD are kept off
-	-----------------------------------------------------
-	
+    -- Seven segment decoder instance
+    sevenseg_decoder_inst : sevenseg_decoder
+        port map (
+            i_Hex   => sw,
+            o_seg_n => seg
+        );
+
+    -- Button C enables display 0 (active low)
+    w_7SD_EN_n <= not btnC;
+
+    -- Only display 0 is active when btnC pressed
+    an(0) <= w_7SD_EN_n;
+    an(1) <= '1';
+    an(2) <= '1';
+    an(3) <= '1';
+
 end top_basys3_arch;
