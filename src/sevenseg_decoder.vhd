@@ -33,21 +33,21 @@ begin
     -- This is REVERSED from prelab truth table (which was CA to CG)
     -- Active low: 0 = segment ON, 1 = segment OFF
     with i_Hex select
-    o_seg_n <=  "0000001" when x"0",  -- 0
-                "1001111" when x"1",  -- 1
-                "0010010" when x"2",  -- 2
-                "0000110" when x"3",  -- 3
-                "1001100" when x"4",  -- 4
-                "0100100" when x"5",  -- 5
-                "0100000" when x"6",  -- 6
-                "0001111" when x"7",  -- 7
-                "0000000" when x"8",  -- 8
-                "0000100" when x"9",  -- 9
-                "1110111" when x"A",  -- A  
-                "0011111" when x"B",  -- B
-                "0001101" when x"C",  -- C
-                "0111101" when x"D",  -- D
-                "1001111" when x"E",  -- E
-                "1000111" when x"F",  -- F
-                "1111111" when others; -- all off
+o_seg_n <=  "1000000" when x"0",  -- 0
+            "1111001" when x"1",  -- 1
+            "0100100" when x"2",  -- 2
+            "0110000" when x"3",  -- 3
+            "0011001" when x"4",  -- 4
+            "0010010" when x"5",  -- 5
+            "0000010" when x"6",  -- 6
+            "1111000" when x"7",  -- 7
+            "0000000" when x"8",  -- 8
+            "0010000" when x"9",  -- 9
+            "0001000" when x"A",  -- A
+            "0000011" when x"B",  -- B
+            "1000110" when x"C",  -- C
+            "0100001" when x"D",  -- D
+            "0000110" when x"E",  -- E
+            "0001110" when x"F",  -- F
+            "1111111" when others;
 end Behavioral;
